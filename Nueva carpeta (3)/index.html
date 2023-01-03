@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <canvas id="micanvas" height="700" width="700" style="background-color: rgb(220, 240, 209) !important;"></canvas>
+
+    <script>
+
+        var canvas = document.getElementById("micanvas");
+        var ctx = canvas.getContext("2d");
+
+        var width = canvas.width;
+        var height = canvas.height;
+
+        //Olt
+        ctx.fillStyle = 'grey';
+        ctx.globalAlpha = 0.4;
+        ctx.fillRect(300, 50, 100, 40);
+
+
+        //nap
+        var count=0;
+
+        document.getElementById('micanvas').addEventListener('click', function (evt) {
+
+            var ClientRect = canvas.getBoundingClientRect();
+
+            var x = evt.clientX - ClientRect.left;
+            var y = evt.clientY - ClientRect.top;
+
+
+            console.log("final: " + x + " " + y);
+            ctx.moveTo(350,100);
+            ctx.bezierCurveTo(0, 0, 90, 90, x, y);
+            ctx.stroke();
+
+            //imagen nap
+            var img = new Image();
+            img.src = "nap.png";
+            ctx.drawImage(img, x, y, 40, 40);
+        });
+
+    </script>
+
+</body>
+</html>
